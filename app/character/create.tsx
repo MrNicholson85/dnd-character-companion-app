@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Alert, Image, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { X, Camera, User } from 'lucide-react-native';
@@ -37,7 +37,28 @@ export default function CreateCharacterScreen() {
   const [skills, setSkills] = useState<{ [key: string]: boolean }>({});
 
   const pickImage = async () => {
-    // Request permissions
+    if (Platform.OS === 'web') {
+      // For web, use HTML file input
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = (e: any) => {
+        const file = e.target.files?.[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            if (event.target?.result) {
+              setImageUri(event.target.result as string);
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+      input.click();
+      return;
+    }
+
+    // Request permissions for mobile
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     
     if (status !== 'granted') {
@@ -59,6 +80,12 @@ export default function CreateCharacterScreen() {
   };
 
   const takePhoto = async () => {
+    if (Platform.OS === 'web') {
+      // Camera not typically available on web, just use file picker
+      pickImage();
+      return;
+    }
+
     // Request permissions
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
     
@@ -80,15 +107,21 @@ export default function CreateCharacterScreen() {
   };
 
   const handleImagePress = () => {
-    Alert.alert(
-      'Add Character Image',
-      'Choose an option',
-      [
-        { text: 'Take Photo', onPress: takePhoto },
-        { text: 'Choose from Library', onPress: pickImage },
-        { text: 'Cancel', style: 'cancel' },
-      ]
-    );
+    if (Platform.OS === 'web') {
+      // On web, directly open file picker
+      pickImage();
+    } else {
+      // On mobile, show options
+      Alert.alert(
+        'Add Character Image',
+        'Choose an option',
+        [
+          { text: 'Take Photo', onPress: takePhoto },
+          { text: 'Choose from Library', onPress: pickImage },
+          { text: 'Cancel', style: 'cancel' },
+        ]
+      );
+    }
   };
 
   const handleSave = async () => {

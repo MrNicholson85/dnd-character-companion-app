@@ -132,7 +132,7 @@ export default function CharacterDetailsScreen() {
         )}
 
         {/* Main Stats */}
-        <View style={styles.mainStatsRow}>
+        <View className="bg-blue-500">
           <Card style={styles.mainStatCard}>
             <Heart size={24} color={colors.error} />
             <Text style={styles.mainStatLabel}>Hit Points</Text>
@@ -293,7 +293,7 @@ export default function CharacterDetailsScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     backgroundColor: colors.background,
   },
   header: {
