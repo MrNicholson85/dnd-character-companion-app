@@ -68,6 +68,30 @@ The app will be available at `http://localhost:3000`
 1. Use `npm install` (slower but more compatible)
 2. Run `npm run setup` after installing new native dependencies
 
+## Future Improvements
+
+### Features
+- [ ] **Cloud Sync** - Store characters in cloud storage (Firebase/Supabase) for multi-device access
+- [ ] **Party Management** - Create and manage adventuring parties with shared initiative tracker
+- [ ] **Advanced Dice Roller** - Add dice roll history, custom roll macros, and advantage/disadvantage
+- [ ] **Spell Slots Tracker** - Track spell slot usage by level for spellcasting classes
+- [ ] **Inventory Management** - Enhanced equipment system with weight tracking and currency
+- [ ] **Character Export/Import** - Export characters as JSON/PDF for sharing or backup
+
+### Technical Enhancements
+- [ ] **Testing Suite** - Add unit tests (Jest) and E2E tests (Detox/Playwright)
+- [ ] **State Management** - Migrate to Zustand or Context API for complex shared state
+- [ ] **Offline-First Sync** - Implement conflict resolution for multi-device scenarios
+- [ ] **Performance Optimization** - Add list virtualization for large character collections
+- [ ] **Accessibility** - Improve screen reader support and keyboard navigation
+- [ ] **Analytics** - Add privacy-friendly analytics (Expo Analytics or Plausible)
+
+### Content
+- [ ] **More D&D Rules** - Add support for feats, multiclassing, backgrounds
+- [ ] **Monster Manual Integration** - Quick reference for common monsters
+- [ ] **Campaign Notes** - Track session notes, quests, and NPC relationships
+- [ ] **Character Builder** - Step-by-step guided character creation wizard
+
 ## Notes for AI Agents
 
 - **Fast setup**: Use `bun install` then `npm run dev`
