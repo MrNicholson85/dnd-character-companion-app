@@ -4,9 +4,11 @@ services:
     runtime: node
     env: node
     buildCommand: npm install && npm run build
-    startCommand: npm start
+    startCommand: node server.js
     envVars:
       - key: NODE_VERSION
         value: 18
+      - key: PORT
+        value: 10000
       - key: EXPO_NO_TELEMETRY
         value: 1

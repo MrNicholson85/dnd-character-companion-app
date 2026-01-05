@@ -1,6 +1,5 @@
 {
-  "name": "blink-expo-starter",
-  "main": "expo-router/entry",
+  "name": "dnd-character-companion",
   "version": "1.0.0",
   "private": true,
   "scripts": {
