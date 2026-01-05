@@ -46,20 +46,44 @@ You'll need:
 
 ---
 
-## 2. Web Deployment (Vercel)
+## 2. Web Deployment
 
-### Step 1: Build for web
+### Option A: Render (Recommended for Node.js hosting)
+
+#### Step 1: Install serve package
+```powershell
+npm install serve
+```
+
+#### Step 2: Create Render service
+1. Go to https://render.com and create a new Web Service
+2. Connect your GitHub repository
+3. Configure the service:
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npm start`
+   - **Environment**: Node
+
+#### Step 3: The app will automatically deploy!
+- Render will build your web app and serve it
+- Your app will be available at `https://your-app.onrender.com`
+- Every push to your main branch triggers a new deployment
+
+**Note**: The `render.yaml` file in the project root pre-configures these settings.
+
+### Option B: Vercel (Alternative - Static hosting)
+
+#### Step 1: Build for web
 ```powershell
 npm run build:web
 ```
 This creates a `dist` folder with your web app.
 
-### Step 2: Install Vercel CLI
+#### Step 2: Install Vercel CLI
 ```powershell
 npm install -g vercel
 ```
 
-### Step 3: Deploy to Vercel
+#### Step 3: Deploy to Vercel
 ```powershell
 cd dist
 vercel
@@ -68,8 +92,12 @@ vercel
 Or connect your GitHub repo to Vercel for automatic deployments:
 1. Go to https://vercel.com
 2. Import your GitHub repository
-3. Vercel will auto-detect settings
+3. Configure build settings:
+   - **Build Command**: `npm run build:web`
+   - **Output Directory**: `dist`
 4. Deploy!
+
+**Note**: The `vercel.json` file in the project root handles routing for single-page apps.
 
 ---
 
