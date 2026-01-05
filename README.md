@@ -78,7 +78,7 @@ The app will be available at `http://localhost:3000`
 - [ ] **Inventory Management** - Enhanced equipment system with weight tracking and currency
 - [ ] **Character Export/Import** - Export characters as JSON/PDF for sharing or backup
 
-### Technical Enhancements
+### Technical-Enhancements
 - [ ] **Testing Suite** - Add unit tests (Jest) and E2E tests (Detox/Playwright)
 - [ ] **State Management** - Migrate to Zustand or Context API for complex shared state
 - [ ] **Offline-First Sync** - Implement conflict resolution for multi-device scenarios
