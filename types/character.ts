@@ -1,5 +1,6 @@
 export interface Character {
   id: string;
+  userId?: string; // For Firebase multi-user support
   name: string;
   race: string;
   class: string;

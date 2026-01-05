@@ -19,6 +19,12 @@ All character data is stored via AsyncStorage with these utilities:
 - **Sync UI**: Use `useFocusEffect()` from `expo-router` to reload data when screens regain focus (see `app/(tabs)/index.tsx:24-28`)
 - **Optimistic Updates**: Update UI immediately, then sync with storage (see delete pattern in `index.tsx:44-71`)
 
+**Firebase Integration (Optional)**:
+- Firebase JS SDK configured in `utils/firebase.ts`
+- Firestore helpers in `utils/firestore.ts` mirror AsyncStorage API
+- Character interface includes optional `userId` field for multi-user support
+- Can swap AsyncStorage for Firestore by changing imports
+
 ### Design System (DO NOT use arbitrary colors)
 Import from `constants/design.ts` - NEVER hardcode colors/spacing:
 ```typescript

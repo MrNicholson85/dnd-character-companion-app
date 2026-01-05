@@ -46,31 +46,58 @@ You'll need:
 
 ---
 
-## 2. Web Deployment
+## 2. Web Deployment (Firebase Hosting)
 
-### Option A: Render (Recommended for Node.js hosting)
-
-#### Step 1: Install serve package
+### Step 1: Install Firebase CLI
 ```powershell
-npm install serve
+npm install -g firebase-tools
 ```
 
-#### Step 2: Create Render service
-1. Go to https://render.com and create a new Web Service
-2. Connect your GitHub repository
-3. Configure the service:
-   - **Build Command**: `npm install && npm run build`
-   - **Start Command**: `npm start`
-   - **Environment**: Node
+### Step 2: Login to Firebase
+```powershell
+firebase login
+```
 
-#### Step 3: The app will automatically deploy!
-- Render will build your web app and serve it
-- Your app will be available at `https://your-app.onrender.com`
-- Every push to your main branch triggers a new deployment
+### Step 3: Initialize Firebase in your project
+```powershell
+firebase init
+```
+Select:
+- **Hosting**: Configure files for Firebase Hosting
+- **Firestore**: (Optional) If using Firestore for character storage
+- **Authentication**: (Optional) If adding user accounts
 
-**Note**: The `render.yaml` file in the project root pre-configures these settings.
+Configuration:
+- **Public directory**: `dist`
+- **Single-page app**: Yes
+- **Automatic builds**: Optional (GitHub integration)
 
-### Option B: Vercel (Alternative - Static hosting)
+### Step 4: Build your web app
+```powershell
+npm run build:web
+```
+
+### Step 5: Deploy to Firebase
+```powershell
+firebase deploy
+```
+
+Your app will be live at `https://your-project-id.web.app`
+
+### Firebase Configuration
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Create a new project or select existing
+3. Get your Firebase config from Project Settings
+4. Update `utils/firebase.ts` with your config values
+
+**Optional: Set up Firestore**
+- Enable Firestore Database in Firebase Console
+- Update security rules for character data
+- Migrate from AsyncStorage to Firestore using `utils/firestore.ts`
+
+---
+
+## 3. Alternative: Vercel (Static hosting)
 
 #### Step 1: Build for web
 ```powershell
@@ -101,7 +128,7 @@ Or connect your GitHub repo to Vercel for automatic deployments:
 
 ---
 
-## 3. Android Deployment
+## 4. Android Deployment
 
 ### Step 1: Build for Android
 ```powershell
